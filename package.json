@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/TsaiJie/ReactGulu/issues"
   },
-  "homepage": "https://github.com/TsaiJie/ReactGulu#readme"
+  "homepage": "https://github.com/TsaiJie/ReactGulu#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
 }
