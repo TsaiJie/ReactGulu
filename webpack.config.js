@@ -1,9 +1,5 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
-  // 开发模式 不会压缩代码
-  //  生产模式 会压缩代码
-  mode: 'production',
   // 入口
   entry: {
     index: './lib/index.tsx',
@@ -29,28 +25,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'GULU-UI-React',
-      template: 'index.html',
-    }),
-  ],
-  // 是外部的库
-  externals: {
-    react: {
-      //  node
-      commonjs: 'react',
-      commonjs2: 'react',
-      //  浏览器
-      amd: 'react',
-      // script的模式引入 window.React
-      root: 'React',
-    },
-    'react-dom': {
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'react-dom',
-      root: 'ReactDom',
-    },
-  },
+
 }
