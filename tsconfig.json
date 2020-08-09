@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    // 生成的声明文件打包到dist
+    "outDir": "dist",
     "declaration": true,
     "baseUrl": ".",
     "module": "esnext",
