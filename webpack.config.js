@@ -15,6 +15,9 @@ module.exports = {
     //把我们的代码封装成 umd的模块定义，兼容性最强
     libraryTarget: 'umd',
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
 
   module: {
     rules: [
