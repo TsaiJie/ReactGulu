@@ -87,3 +87,12 @@ describe('我的第一个测试用例', () => {
 ```
 yarn test
 ```
+
+`ts-jest` 在 ts 中解决 `import xxx from 'yyy'` 之后 `xxx` 是 `undefined` bug => `import * as xxx from 'yyy'`或者更改 tsconfig.json 就可以`import xxx from 'yyy'`。项目前端运行可以通过 `allowSyntheticDefaultImports` 来避免硬书写 `import * as React`的写法，但是 `ts-jest`从 `v23` 起不支持 `allowSyntheticDefaultImports`, 只支持用 `esModuleInterop` 来解决同样问题
+
+```
+https://github.com/umijs/umi/issues/964
+https://github.com/kulshekhar/ts-jest/issues/632
+  // "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+```
