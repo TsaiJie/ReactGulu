@@ -5,6 +5,6 @@ import Icon from './icon'
 
 ReactDom.render(<React.Fragment>
     <Icon name={"wechat"}/>
-</React.Fragment>, document.body)
+</React.Fragment>, document.querySelector("#root"))
 
 
