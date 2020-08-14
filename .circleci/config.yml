@@ -44,32 +44,32 @@ jobs:
       - run: yarn ci
       - store_test_results:
           path: test-results
-  publish:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: .
-      - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - run: npm publish
+#  publish:
+#    <<: *defaults
+#    steps:
+#      - attach_workspace:
+#          at: .
+#      - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+#      - run: npm publish
 
 
 
-#workflows:
-#  version: 2
-#  build_accept_deploy:
-#    jobs:
-#      - prepare
-#      - build:
-#          requires:
-#            - test
-#      - test:
-#          requires:
-#            - prepare
-#      - publish:
-#          requires:
-#            - build
-#          filters:
-#            tags:
-#              only: /^v[0-9]+(\.[0-9]+)*/
-#            branches:
-#              ignore: /.*/
+workflows:
+  version: 2
+  build_accept_deploy:
+    jobs:
+      - prepare
+      - build:
+          requires:
+            - test
+      - test:
+          requires:
+            - prepare
+      - publish:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
