@@ -1,7 +1,10 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Button from './button'
 
-ReactDom.render(<Button></Button>, document.body)
+import Icon from './icon'
 
-export { Button }
+ReactDom.render(<React.Fragment>
+    <Icon name={"wechat"}/>
+</React.Fragment>, document.body)
+
+
