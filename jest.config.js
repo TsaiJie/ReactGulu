@@ -5,15 +5,10 @@ module.exports = {
   clearMocks: false,
 
   // 收集测试覆盖率
-  collectCoverage: true,
+  collectCoverage: false,
   // 分析报表
-  reporters: ['default', "jest-junit"],
-  // 测试那些代码
-  collectCoverageFrom: ["lib/**/*.{ts,tsx}", "!**/node_modules/**"],
-  // 生成的报告放在哪里
-  coverageDirectory: 'coverage',
-  // 要生成哪些报告
-  coverageReporters: ['text', 'lcov'],
+  reporters: ['default'],
+
 
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   moduleDirectories: ['node_modules'],
