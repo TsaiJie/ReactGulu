@@ -150,7 +150,7 @@ module.exports = Object.assign({}, base, {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'GULU-UI-React',
-      template: 'index.html',
+      template: 'example.html',
     }),
   ],
 })
