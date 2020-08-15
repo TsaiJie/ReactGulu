@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import './dialog.scss'
 import {Icon} from "../index";
-import {scopedClassMaker} from "../__tests__/classes";
+import {scopedClassMaker} from "../classes";
 interface Props {
   visible: boolean;
 }
