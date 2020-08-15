@@ -1,24 +1,27 @@
 import React, {Fragment} from "react";
 import './dialog.scss'
 import {Icon} from "../index";
+import {scopedClassMaker} from "../classes";
 interface Props {
   visible: boolean;
 }
 
+const scopedClass = scopedClassMaker('gulu-dialog')
+const sc = scopedClass
 const Dialog: React.FunctionComponent<Props> = (props) => {
   const {visible, children} = props
   // 必须返回一个null或者组件children有可能是组件也可能不是组件
   return (
     visible ? <Fragment>
-      <div className="gulu-dialog-mask">
+      <div className={sc("mask")}>
       </div>
-      <div className="gulu-dialog">
-        <div className="gulu-dialog-close">
+      <div className={sc()}>
+        <div className={sc('close')}>
           <Icon name={'close'}/>
         </div>
-        <header className="gulu-dialog-header">提示</header>
-        <main className="gulu-dialog-main">{children}</main>
-        <footer className="gulu-dialog-footer">
+        <header className={sc('header')}>提示</header>
+        <main className={sc('main')}>{children}</main>
+        <footer className={sc('footer')}>
           <button>OK</button>
           <button>Cancel</button>
         </footer>
