@@ -1,2 +1,2 @@
 #!/usr/bin/env zsh
-npm version patch && git push 
+npm version patch && git push

@@ -1,6 +1,7 @@
 /dist/*
 /.idea
 /test-results
+.DS_Store
 # Logs
 logs
 *.log
