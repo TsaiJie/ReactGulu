@@ -32,6 +32,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
         </div>
         <header className={sc('header')}>提示</header>
         <main className={sc('main')}>{children}</main>
+        {buttons && buttons.length > 0 &&
         <footer className={sc('footer')}>
           {
             buttons && buttons.map((button, index) =>
@@ -39,7 +40,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
               React.cloneElement(button, {key: index})
             )
           }
-        </footer>
+        </footer>}
       
       </div>
     </Fragment> : null
@@ -54,14 +55,21 @@ Dialog.defaultProps = {
   
 }
 const alert = (content: string) => {
-  const component = <Dialog visible={true} onClose={() => {
+  const onClose = () => {
     // 把 component 复制一份儿 visible变为false，重新新渲染
     ReactDOM.render(React.cloneElement(component, {visible: false}), div)
     // 把div从reactDom卸载
     ReactDOM.unmountComponentAtNode(div)
     // 删除div
     div.remove()
-  }}> {content}</Dialog>
+  }
+  const component =
+    <Dialog
+      visible={true}
+      buttons={[<button onClick={onClose}>Ok</button>]}
+      onClose={onClose}>
+      {content}
+    </Dialog>
   const div = document.createElement('div')
   document.body.append(div)
   ReactDOM.render(component, div)
@@ -100,7 +108,7 @@ const confirm = (content: string, yes?: () => void, no?: () => void) => {
 // ReactFragment 是多个 ReactNode
 const modal = (content: ReactNode | ReactFragment) => {
   const onClose = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}),div)
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div)
     ReactDOM.unmountComponentAtNode(div)
     div.remove()
   }
