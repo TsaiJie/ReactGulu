@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
 import Dialog from './dialog'
-import {alert} from  './dialog'
+import {alert, confirm} from  './dialog'
 const DialogExample: React.FunctionComponent = () => {
   const [x, setX] = useState(false)
   const [y, setY] = useState(false)
@@ -34,6 +34,14 @@ const DialogExample: React.FunctionComponent = () => {
     <div>
       <h1>example3</h1>
       <button onClick={() => alert('1')}>click</button>
+    </div>
+    <div>
+      <h1>example4</h1>
+      <button onClick={() => confirm('1', ()=>{
+        console.log("你点击了yes")
+      }, ()=>{
+        console.log("你点击了no")
+      })}>click</button>
     </div>
   </Fragment>)
 }

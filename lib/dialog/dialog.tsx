@@ -53,19 +53,48 @@ Dialog.defaultProps = {
   clickMaskClose: false
   
 }
-const alert = (content:string) => {
-  const component = <Dialog visible={true} onClose={()=>{
-    // 把visible变为false
+const alert = (content: string) => {
+  const component = <Dialog visible={true} onClose={() => {
+    // 把 component 复制一份儿 visible变为false，重新新渲染
     ReactDOM.render(React.cloneElement(component, {visible: false}), div)
     // 把div从reactDom卸载
     ReactDOM.unmountComponentAtNode(div)
     // 删除div
     div.remove()
-  }} > {content}</Dialog>
+  }}> {content}</Dialog>
   const div = document.createElement('div')
   document.body.append(div)
   ReactDOM.render(component, div)
 }
-export {alert}
+
+const confirm = (content: string, yes?: () => void, no?: () => void) => {
+  const onYes = () => {
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div)
+    ReactDOM.unmountComponentAtNode(div)
+    div.remove()
+    yes && yes()
+    
+  }
+  const onNo = () => {
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div)
+    ReactDOM.unmountComponentAtNode(div)
+    div.remove()
+    no && no()
+  }
+  const component = (
+    <Dialog visible={true}
+            onClose={onNo}
+            buttons={[
+              <button onClick={onYes}>yes</button>,
+              <button onClick={onNo}>no</button>
+            ]}>
+      {content}
+    </Dialog>)
+  const div = document.createElement('div')
+  document.body.append(div)
+  ReactDOM.render(component, div)
+  
+}
+export {alert, confirm}
 
 export default Dialog
