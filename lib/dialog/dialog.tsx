@@ -2,6 +2,7 @@ import React, {Fragment, ReactElement} from "react";
 import './dialog.scss'
 import {Icon} from "../index";
 import {scopedClassMaker} from "../classes";
+import ReactDOM from 'react-dom';
 
 interface Props {
   visible: boolean;
@@ -18,12 +19,10 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
   const onClickClose: React.MouseEventHandler = (e) => {
     onClose(e)
   }
-  const onClickMaskClose: React.MouseEventHandler = (e) =>{
+  const onClickMaskClose: React.MouseEventHandler = (e) => {
     clickMaskClose && onClose(e)
   }
-  
-  // 必须返回一个null或者组件children有可能是组件也可能不是组件
-  return (
+  const dialog =
     visible ? <Fragment>
       <div className={sc("mask")} onClick={onClickMaskClose}>
       </div>
@@ -44,9 +43,13 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
       
       </div>
     </Fragment> : null
+  
+  // 必须返回一个null或者组件children有可能是组件也可能不是组件
+  return (
+    ReactDOM.createPortal(dialog, document.body)
   )
 }
-Dialog.defaultProps ={
+Dialog.defaultProps = {
   clickMaskClose: false
 }
 export default Dialog

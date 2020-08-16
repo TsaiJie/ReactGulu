@@ -7,7 +7,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  &-mask {position: fixed;top: 0;left: 0;height: 100%;width: 100%;background: fade_out(black, 0.5);
+  z-index: 2;
+  &-mask {position: fixed;top: 0;left: 0;height: 100%;width: 100%;
+    background: fade_out(black, 0.5);
+    z-index: 2;
   }
   &-header {
     font-size: 22px;
