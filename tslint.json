@@ -1,6 +1,8 @@
 {
   "extends": ["tslint:recommended", "tslint-react"],
   "rules": {
+    // tslint:disable-next-line:jsx-key
+    "jsx-key": false,
     "no-console": [false, "log", "error"],
     "jsx-no-multiline-js": false,
     "whitespace": false,

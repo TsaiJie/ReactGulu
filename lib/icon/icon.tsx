@@ -1,10 +1,10 @@
-import React from "react";
-import './importIcons'
-import './icon.scss'
-import classes from "../helper/classes";
+import React from 'react';
+import './importIcons';
+import './icon.scss';
+import classes from '../helper/classes';
 
 interface IconProps extends React.SVGAttributes<SVGElement> {
-    name: string
+    name: string;
 }
 
 const Icon: React.FunctionComponent<IconProps> =
@@ -15,7 +15,7 @@ const Icon: React.FunctionComponent<IconProps> =
             >
                 <use xlinkHref={`#${name}`}/>
             </svg>
-        )
-    }
+        );
+    };
 
-export default Icon
+export default Icon;

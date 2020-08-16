@@ -1,16 +1,16 @@
-import React, {Fragment, useState} from "react";
-import Dialog from './dialog'
-import {alert, confirm, modal} from './dialog'
+import React, {Fragment, useState} from 'react';
+import Dialog from './dialog';
+import {alert, confirm, modal} from './dialog';
 
 const DialogExample: React.FunctionComponent = () => {
-  const [x, setX] = useState(false)
-  const [y, setY] = useState(false)
+  const [x, setX] = useState(false);
+  const [y, setY] = useState(false);
   //函数操作模块内部的api
   const openModal = () => {
     // 函数是延迟执行的
     // 函数操作组件内部返回的api 和 闭包很像
-    const close = modal(<h1>你好 <button onClick={() => {close()}}>close</button></h1>)
-  }
+    const close = modal(<h1>你好 <button onClick={() => {close();}}>close</button></h1>);
+  };
   return (<Fragment>
     <div>
       <h2>example1</h2>
@@ -21,7 +21,7 @@ const DialogExample: React.FunctionComponent = () => {
           <button onClick={() => setX(false)}>2</button>
         ]
         
-      } onClose={() => {setX(false)}}>
+      } onClose={() => {setX(false);}}>
         <div>hi</div>
       </Dialog>
     </div>
@@ -34,7 +34,7 @@ const DialogExample: React.FunctionComponent = () => {
           <button onClick={() => setY(false)}>2</button>
         ]
         
-      } onClose={() => {setY(false)}} clickMaskClose={true}>
+      } onClose={() => {setY(false);}} clickMaskClose={true}>
         <div>hi</div>
       </Dialog>
     </div>
@@ -45,9 +45,9 @@ const DialogExample: React.FunctionComponent = () => {
     <div>
       <h2>example4--confirm</h2>
       <button onClick={() => confirm('1', () => {
-        console.log("你点击了yes")
+        console.log('你点击了yes');
       }, () => {
-        console.log("你点击了no")
+        console.log('你点击了no');
       })}>confirm
       </button>
     </div>
@@ -55,6 +55,6 @@ const DialogExample: React.FunctionComponent = () => {
       <h2>example5--modal</h2>
       <button onClick={openModal}>modal</button>
     </div>
-  </Fragment>)
-}
-export default DialogExample
+  </Fragment>);
+};
+export default DialogExample;
