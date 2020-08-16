@@ -53,54 +53,58 @@ Dialog.defaultProps = {
   clickMaskClose: false
   
 }
-const modal = (content: ReactNode, buttons?: Array<ReactElement>) => {
+const modal = (content: ReactNode, buttons?: Array<ReactElement>, afterClose?: () => void) => {
   const onClose = () => {
     // 把 component 复制一份儿 visible变为false，重新新渲染
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div)
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
     // 把div从reactDom卸载
-    ReactDOM.unmountComponentAtNode(div)
+    ReactDOM.unmountComponentAtNode(div);
     // 删除div
-    div.remove()
+    div.remove();
+    
   }
   const component =
     <Dialog
       visible={true}
       buttons={buttons}
-      onClose={onClose}>
+      onClose={() => {
+        onClose();
+        afterClose && afterClose()
+      }}>
       {content}
     </Dialog>
-  const div = document.createElement('div')
-  document.body.append(div)
-  ReactDOM.render(component, div)
-  return onClose
+  const div = document.createElement('div');
+  document.body.append(div);
+  ReactDOM.render(component, div);
+  return onClose;
 }
 
 const alert = (content: string) => {
-  const button = <button onClick={() => close()}>Ok</button>
-  const close = modal(content, [button])
+  const button = <button onClick={() => close()}>Ok</button>;
+  const close = modal(content, [button]);
 }
 
 const confirm = (content: string, yes?: () => void, no?: () => void) => {
   
   const onYes = () => {
-    close()
-    yes && yes()
+    close();
+    yes && yes();
   }
   const onNo = () => {
-    close()
-    no && no()
+    close();
+    no && no();
   }
   const buttons = [
     <button onClick={onYes}>yes</button>,
     <button onClick={onNo}>no</button>
-  ]
-  const close = modal(content, buttons)
+  ];
+  const close = modal(content, buttons, no);
   
 }
 // ReactNode 可以是标签可以是字符串 包括ReactFragment ReactElement
 // ReactElement 只能是字符串
 // ReactFragment 是多个 ReactNode
 
-export {alert, confirm, modal}
+export {alert, confirm, modal};
 
-export default Dialog
+export default Dialog;
