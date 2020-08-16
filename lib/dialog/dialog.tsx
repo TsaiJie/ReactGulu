@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 
 interface Props {
   visible: boolean;
-  buttons: Array<ReactElement>;
+  buttons?: Array<ReactElement>;
   onClose: React.MouseEventHandler;
   clickMaskClose?: boolean
 }
@@ -34,7 +34,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
         <main className={sc('main')}>{children}</main>
         <footer className={sc('footer')}>
           {
-            buttons.map((button, index) =>
+            buttons && buttons.map((button, index) =>
               // 会损耗一些性能，渲染就会进行复制， 可以使用memo解决
               React.cloneElement(button, {key: index})
             )
@@ -51,5 +51,21 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
 }
 Dialog.defaultProps = {
   clickMaskClose: false
+  
 }
+const alert = (content:string) => {
+  const component = <Dialog visible={true} onClose={()=>{
+    // 把visible变为false
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div)
+    // 把div从reactDom卸载
+    ReactDOM.unmountComponentAtNode(div)
+    // 删除div
+    div.remove()
+  }} > {content}</Dialog>
+  const div = document.createElement('div')
+  document.body.append(div)
+  ReactDOM.render(component, div)
+}
+export {alert}
+
 export default Dialog

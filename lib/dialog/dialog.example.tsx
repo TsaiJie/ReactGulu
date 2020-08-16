@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
 import Dialog from './dialog'
-
+import {alert} from  './dialog'
 const DialogExample: React.FunctionComponent = () => {
   const [x, setX] = useState(false)
   const [y, setY] = useState(false)
@@ -30,6 +30,10 @@ const DialogExample: React.FunctionComponent = () => {
       } onClose={() => {setY(false)}} clickMaskClose={true}>
         <div>hi</div>
       </Dialog>
+    </div>
+    <div>
+      <h1>example3</h1>
+      <button onClick={() => alert('1')}>click</button>
     </div>
   </Fragment>)
 }
