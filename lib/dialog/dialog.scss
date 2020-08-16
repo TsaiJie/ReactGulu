@@ -2,8 +2,7 @@
 .gulu-dialog {
   position: fixed;
   background: white;
-  width: 10em;
-  height: 10em;
+  min-width: 20em;
   border-radius: 4px;
   top: 50%;
   left: 50%;
@@ -11,7 +10,18 @@
   &-mask {position: fixed;top: 0;left: 0;height: 100%;width: 100%;background: fade_out(black, 0.5);
   }
   &-header {
- 
+    font-size: 22px;
+    padding: 8px 16px;
+    border-bottom: 1px grey solid;
+  }
+  &-main {
+    min-height: 6em;
+  }
+  &-footer {
+    border-top: 1px solid grey;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: flex-end;
   }
   &-close {
     position: absolute;

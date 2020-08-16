@@ -1,9 +1,20 @@
 // 选择不到伪元素
 [class^=gulu-] {
   box-sizing: border-box;
-  font-size: 14px;
   &::after, &::before {
     box-sizing: border-box;
-    font-size: 14px;
+  }
+  
+}
+button {
+  height: 32px;
+  box-sizing: border-box;
+  margin: 0 4px;
+  border-radius: 4px;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
   }
 }
