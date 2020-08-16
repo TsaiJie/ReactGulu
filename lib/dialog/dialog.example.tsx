@@ -1,12 +1,19 @@
 import React, {Fragment, useState} from "react";
 import Dialog from './dialog'
-import {alert, confirm} from  './dialog'
+import {alert, confirm, modal} from './dialog'
+
 const DialogExample: React.FunctionComponent = () => {
   const [x, setX] = useState(false)
   const [y, setY] = useState(false)
+  //函数操作模块内部的api
+  const openModal = () => {
+    // 函数是延迟执行的
+    // 函数操作组件内部返回的api 和 闭包很像
+    const close = modal(<h1>你好 <button onClick={() => {close()}}>close</button></h1>)
+  }
   return (<Fragment>
     <div>
-      <h1>example1</h1>
+      <h2>example1</h2>
       <button onClick={() => setX(!x)}>click</button>
       <Dialog visible={x} buttons={
         [
@@ -19,7 +26,7 @@ const DialogExample: React.FunctionComponent = () => {
       </Dialog>
     </div>
     <div>
-      <h1>example2</h1>
+      <h2>example2</h2>
       <button onClick={() => setY(!y)}>click</button>
       <Dialog visible={y} buttons={
         [
@@ -32,16 +39,21 @@ const DialogExample: React.FunctionComponent = () => {
       </Dialog>
     </div>
     <div>
-      <h1>example3</h1>
-      <button onClick={() => alert('1')}>click</button>
+      <h2>example3--alert</h2>
+      <button onClick={() => alert('1')}>alert</button>
     </div>
     <div>
-      <h1>example4</h1>
-      <button onClick={() => confirm('1', ()=>{
+      <h2>example4--confirm</h2>
+      <button onClick={() => confirm('1', () => {
         console.log("你点击了yes")
-      }, ()=>{
+      }, () => {
         console.log("你点击了no")
-      })}>click</button>
+      })}>confirm
+      </button>
+    </div>
+    <div>
+      <h2>example5--modal</h2>
+      <button onClick={openModal}>modal</button>
     </div>
   </Fragment>)
 }
