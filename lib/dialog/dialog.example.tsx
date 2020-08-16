@@ -5,6 +5,7 @@ import {alert, confirm, modal} from './dialog';
 const DialogExample: React.FunctionComponent = () => {
   const [x, setX] = useState(false);
   const [y, setY] = useState(false);
+  const [z, setZ] = useState(false);
   //函数操作模块内部的api
   const openModal = () => {
     // 函数是延迟执行的
@@ -54,6 +55,19 @@ const DialogExample: React.FunctionComponent = () => {
     <div>
       <h2>example5--modal</h2>
       <button onClick={openModal}>modal</button>
+    </div>
+    <div>
+      <h2>example5</h2>
+      <button onClick={() => setZ(!z)}>click</button>
+      <Dialog visible={z} buttons={
+        [
+          <button onClick={() => setZ(false)}>1</button>,
+          <button onClick={() => setZ(false)}>2</button>
+        ]
+      
+      } onClose={() => {setZ(false);}} enableMask={false}>
+        <div>hi</div>
+      </Dialog>
     </div>
   </Fragment>);
 };

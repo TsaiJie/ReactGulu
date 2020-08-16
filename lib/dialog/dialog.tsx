@@ -9,13 +9,14 @@ interface Props {
   buttons?: ReactElement[];
   onClose: React.MouseEventHandler;
   clickMaskClose?: boolean;
+  enableMask?: boolean;
 }
 
 const scopedClass = scopedClassMaker('gulu-dialog');
 const sc = scopedClass;
 const Dialog: React.FunctionComponent<Props> = (props) => {
   
-  const {visible, children, buttons, onClose, clickMaskClose} = props;
+  const {visible, children, buttons, onClose, clickMaskClose, enableMask} = props;
   const onClickClose: React.MouseEventHandler = (e) => {
     onClose(e);
   };
@@ -24,8 +25,8 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
   };
   const dialog =
     visible ? <Fragment>
-      <div className={sc('mask')} onClick={onClickMaskClose}>
-      </div>
+      {enableMask && <div className={sc('mask')} onClick={onClickMaskClose}>
+      111</div>}
       <div className={sc()}>
         <div className={sc('close')} onClick={onClickClose}>
           <Icon name={'close'}/>
@@ -50,8 +51,8 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
   );
 };
 Dialog.defaultProps = {
-  clickMaskClose: false
-  
+  clickMaskClose: false,
+  enableMask: true
 };
 const modal = (content: ReactNode, buttons?: ReactElement[], afterClose?: () => void) => {
   const onClose = () => {

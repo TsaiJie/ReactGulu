@@ -8,6 +8,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
   &-mask {position: fixed;top: 0;left: 0;height: 100%;width: 100%;
     background: fade_out(black, 0.5);
     z-index: 2;
@@ -15,13 +16,13 @@
   &-header {
     font-size: 22px;
     padding: 8px 16px;
-    border-bottom: 1px grey solid;
+    border-bottom: 1px #cccccc solid;
   }
   &-main {
     min-height: 6em;
   }
   &-footer {
-    border-top: 1px solid grey;
+    border-top: 1px solid #cccccc ;
     padding: 8px 16px;
     display: flex;
     justify-content: flex-end;
@@ -30,15 +31,15 @@
     position: absolute;
     bottom: 100%;
     right: 0;
-    background: $main-color;
+    background: white;
     width: 1.5em;
     height: 1.5em;
     border-radius: 50%;
-    transform: translate(50%, 50%);
+    transform: translate(0%, 50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ffffff;
+    color: black;
     cursor: pointer;
   }
 }
