@@ -57,7 +57,7 @@ const DialogExample: React.FunctionComponent = () => {
       <button onClick={openModal}>modal</button>
     </div>
     <div>
-      <h2>example5</h2>
+      <h2>example6</h2>
       <button onClick={() => setZ(!z)}>click</button>
       <Dialog visible={z} buttons={
         [
