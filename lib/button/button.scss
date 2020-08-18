@@ -8,6 +8,7 @@ $waring: #f4af4f;
 $success: #6ec88e;
 $grey: gray;
 .gulu-button {
+  position: relative;
   box-sizing: border-box;
   height: $h;
   font-size: 16px;
@@ -26,6 +27,9 @@ $grey: gray;
   &:focus {
     color: $blue;
     border-color: $blue;
+    > .gulu-loadingIndicator {
+      border-color: $blue $blue $blue transparent;
+    }
   }
   &:focus {
     outline: none;
@@ -82,13 +86,20 @@ $grey: gray;
       padding: 0 7px;
     }
   }
+
   &.gulu-theme-button {
+
+    &:active::after {
+      transform: scale(0, 0);
+      opacity: 0.3;
+      transition: 0s;
+    }
     &.gulu-level-main {
       background: $blue;
       color: white;
       border-color: $blue;
       > .gulu-loadingIndicator {
-        border-color: white white  white  transparent;
+        border-color: white white white transparent;
       }
       &:hover,
       &:focus {
@@ -101,7 +112,7 @@ $grey: gray;
       border-color: $red;
       color: white;
       > .gulu-loadingIndicator {
-        border-color: white white  white  transparent;
+        border-color: white white white transparent;
       }
       &:hover,
       &:focus {
@@ -111,7 +122,7 @@ $grey: gray;
     }
     &.gulu-level-waring {
       > .gulu-loadingIndicator {
-        border-color: white white  white  transparent;
+        border-color: white white white transparent;
       }
       background: $waring;
       border-color: $waring;
@@ -124,7 +135,7 @@ $grey: gray;
     }
     &.gulu-level-success {
       > .gulu-loadingIndicator {
-        border-color: white white  white  transparent;
+        border-color: white white white transparent;
       }
       background: $success;
       border-color: $success;
@@ -160,6 +171,11 @@ $grey: gray;
     }
   }
   &.gulu-theme-text {
+    &:active::after {
+      transform: scale(0, 0);
+      opacity: 0.3;
+      transition: 0s;
+    }
     &.gulu-level-main {
       color: $blue;
       &:hover,
@@ -189,10 +205,12 @@ $grey: gray;
       }
     }
   }
+  
   &.gulu-theme-button {
     &[disabled] {
       cursor: not-allowed;
       color: $grey;
+      pointer-events: none;
       &:hover {
         border-color: $grey;
       }
@@ -211,20 +229,38 @@ $grey: gray;
       pointer-events: none;
     }
   }
-  > .gulu-loadingIndicator{
+  > .gulu-loadingIndicator {
     width: 14px;
     height: 14px;
     display: inline-block;
     margin-right: 4px;
     border-radius: 8px;
-    border-color: $color $color  $color  transparent;
+    border-color: $color $color $color transparent;
     border-style: solid;
     border-width: 2px;
     animation: gulu-spin 1s infinite linear;
   }
+  &.gulu-theme-button,&.gulu-theme-text {
+    overflow: hidden;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, #666 10%, transparent 10.01%);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      transform: scale(10, 10);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.6s;
+    }
+  }
 }
-
 @keyframes gulu-spin {
-  0%{transform: rotate(0deg)}
-  100%{transform: rotate(360deg)}
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(360deg)}
 }
