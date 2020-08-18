@@ -11,11 +11,12 @@ interface Props {
   clickMaskClose?: boolean;
   enableMask?: boolean;
 }
-
+let bodyPaddingRightGlobal = '';
+let bodyOverflowGlobal = '';
 const scopedClass = scopedClassMaker('gulu-dialog');
 const sc = scopedClass;
 const Dialog: React.FunctionComponent<Props> = (props) => {
-  
+
   const {visible, children, buttons, onClose, clickMaskClose, enableMask} = props;
   const onClickClose: React.MouseEventHandler = (e) => {
     onClose(e);
@@ -23,36 +24,43 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
   const onClickMaskClose: React.MouseEventHandler = (e) => {
     clickMaskClose && onClose(e);
   };
+  
+  // 挂载的时候获取 body 的padding和overflow
+  useEffect(()=>{
+    bodyOverflowGlobal = document.body.style.overflow;
+    bodyPaddingRightGlobal = document.body.style.paddingRight;
+    const close:React.KeyboardEventHandler = (e)=>{
+      if(e.key ==='Escape'){
+        // @ts-ignore
+        onClose(e);
+      }
+    };
+    // @ts-ignore
+    document.addEventListener('keydown', close);
+    return () => {
+      // @ts-ignore
+      document.removeEventListener('keydown', close);
+    };
+  },[]);
   // 隐藏滚动条
   useEffect(() => {
     if (visible) {
+      document.body.style.paddingRight = getScrollBarWidth() + 'px';
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.paddingRight = bodyPaddingRightGlobal;
+      document.body.style.overflow = bodyOverflowGlobal;
     }
   }, [visible]);
   
+  
   // 得到移到视野之外
-  const getScrollWidth = () => {
-    const outer = document.createElement('div');
-    outer.style.width = '100px';
-    outer.style.visibility = 'hidden';
-    outer.style.position = 'absolute';
-    outer.style.top = '-9999px';
-    document.body.appendChild(outer);
-    
-    const widthNoScroll = outer.offsetWidth;
-    outer.style.overflow = 'scroll';
-    
-    const inner = document.createElement('div');
-    inner.style.width = '100%';
-    outer.appendChild(inner);
-    
-    const widthWithScroll = inner.offsetWidth;
-    outer.parentNode && outer.parentNode.removeChild(outer);
-    return widthNoScroll - widthWithScroll;
+  const getScrollBarWidth = (): number => {
+    return (
+      window.innerWidth - document.body.clientWidth ||
+      document.documentElement.clientHeight
+    );
   };
-  console.log(getScrollWidth());
   const dialog =
     visible ?
       <Fragment>
@@ -86,7 +94,8 @@ Dialog.defaultProps = {
 };
 const modal = (content: ReactNode, buttons?: ReactElement[], afterClose?: () => void) => {
   const onClose = () => {
-    document.body.style.overflow = 'auto';
+    document.body.style.paddingRight = bodyPaddingRightGlobal;
+    document.body.style.overflow = bodyOverflowGlobal;
     // 把 component 复制一份儿 visible变为false，重新新渲染
     ReactDOM.render(React.cloneElement(component, {visible: false}), div);
     // 把div从reactDom卸载

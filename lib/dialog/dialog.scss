@@ -8,6 +8,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  animation: Spread .3s;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
   &-mask {position: fixed;top: 0;left: 0;height: 100%;width: 100%;
     background: fade_out(black, 0.5);
@@ -41,5 +42,16 @@
     align-items: center;
     color: black;
     cursor: pointer;
+  }
+}
+@keyframes Spread {
+  0% {
+    opacity: 0;
+    // 之所以要再加translateY(-50%)，是为了防止动画抖动
+    transform: translate(-50%,-50%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
   }
 }
