@@ -5,7 +5,7 @@ const ButtonExample: React.FunctionComponent = () => {
   
   return (<Fragment>
     <div>
-      <Button>默认按钮</Button>
+      <Button onClick={()=>{console.log('111');}}>默认按钮</Button>
       <Button theme="link" href="https://www.baidu.com">link</Button>
       <Button theme="text">text</Button>
     </div>

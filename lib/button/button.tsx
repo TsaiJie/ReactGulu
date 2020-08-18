@@ -16,14 +16,17 @@ interface BaseButtonProps {
   theme?: Theme;
   level?: ButtonType;
   loading?: boolean;
-  
 }
+
+type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>;
+type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>;
+type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 const scopedClass = scopedClassMaker('gulu');
 const sc = scopedClass;
-const Button: React.FC<BaseButtonProps> = (props) => {
-  const {theme,level, disabled, size, children, href, loading} = props;
-  const classes = classNames(sc('button'), {
+const Button: React.FC<ButtonProps> = (props) => {
+  const {theme, level, disabled, size, children, href, loading, className, ...restProps} = props;
+  const classes = classNames(sc('button'), className, {
     [sc(`theme-${theme}`)]: theme,
     [sc(`size-${size}`)]: size,
     [sc(`level-${level}`)]: level,
@@ -34,9 +37,10 @@ const Button: React.FC<BaseButtonProps> = (props) => {
       <a
         href={href}
         className={classes}
+        {...restProps}
       >
         <span>{children}</span>
-       
+      
       </a>
     );
   } else {
@@ -44,10 +48,11 @@ const Button: React.FC<BaseButtonProps> = (props) => {
       <button
         className={classes}
         disabled={disabled}
+        {...restProps}
       >
         {loading && <span className="gulu-loadingIndicator"/>}
         <span>{children}</span>
-        
+      
       </button>
     );
   }
