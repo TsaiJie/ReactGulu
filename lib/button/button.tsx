@@ -1,26 +1,33 @@
 import React from 'react';
 import classNames from 'classnames';
+import {scopedClassMaker} from '../classes';
+import './button.scss';
 
 type ButtonSize = 'large' | 'small';
-type ButtonType = 'primary' | 'default' | 'danger' | 'link';
+// type ButtonType = 'primary' | 'default' | 'danger';
+type Theme = 'button' | 'link' | 'text';
 
 interface BaseButtonProps {
   className?: string;
   disabled?: boolean;
   size?: ButtonSize;
-  btnType?: ButtonType;
+  // btnType?: ButtonType;
   children: React.ReactNode;
   href?: string;
+  theme?: Theme;
+  
 }
 
+const scopedClass = scopedClassMaker('gulu');
+const sc = scopedClass;
 const Button: React.FC<BaseButtonProps> = (props) => {
-  const {btnType, disabled, size, children, href} = props;
-  const classes = classNames('btn', {
-    [`btn-${btnType}`]: btnType,
+  const {theme, disabled, size, children, href} = props;
+  const classes = classNames(sc('button'), {
+    [sc(`theme-${theme}`)]: theme,
     [`btn-${size}`]: size,
-    'disabled': (btnType === 'link') && disabled
+    'disabled': (theme === 'link') && disabled
   });
-  if (btnType === 'link' && href) {
+  if (theme === 'link' && href) {
     return (
       <a
         href={href}
@@ -42,6 +49,6 @@ const Button: React.FC<BaseButtonProps> = (props) => {
 };
 Button.defaultProps = {
   disabled: false,
-  btnType: 'default'
+  theme: 'button'
 };
 export default Button;
