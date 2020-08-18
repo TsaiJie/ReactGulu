@@ -6,6 +6,7 @@ $radius: 4px;
 $red: #db4e2b;
 $waring: #f4af4f;
 $success: #6ec88e;
+$grey: gray;
 .gulu-button {
   box-sizing: border-box;
   height: $h;
@@ -174,6 +175,28 @@ $success: #6ec88e;
       &:focus {
         color: darken($success, 10%);
       }
+    }
+  }
+  &.gulu-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+      &:hover {
+        border-color: $grey;
+      }
+    }
+  }
+  &.gulu-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+    }
+  }
+  &.gulu-theme-link {
+    &.disabled {
+      cursor: not-allowed;
+      color: $grey;
+      pointer-events: none;
     }
   }
 }

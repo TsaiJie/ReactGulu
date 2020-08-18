@@ -37,6 +37,8 @@ const ButtonExample: React.FunctionComponent = () => {
       <Button theme="text" level={'success'}>success</Button>
       <Button theme="text">text</Button>
     </div>
+    <Button disabled={true}>main</Button>
+    <Button disabled={true} theme="link" href="https://www.baidu.com">danger</Button>
   </Fragment>);
 };
 export default ButtonExample;
