@@ -4,27 +4,28 @@ import {scopedClassMaker} from '../classes';
 import './button.scss';
 
 type ButtonSize = 'big' | 'small';
-// type ButtonType = 'primary' | 'default' | 'danger';
+type ButtonType = 'main' | 'default' | 'danger' | 'waring' | 'success';
 type Theme = 'button' | 'link' | 'text';
 
 interface BaseButtonProps {
   className?: string;
   disabled?: boolean;
   size?: ButtonSize;
-  // btnType?: ButtonType;
   children: React.ReactNode;
   href?: string;
   theme?: Theme;
+  level?: ButtonType;
   
 }
 
 const scopedClass = scopedClassMaker('gulu');
 const sc = scopedClass;
 const Button: React.FC<BaseButtonProps> = (props) => {
-  const {theme, disabled, size, children, href} = props;
+  const {theme,level, disabled, size, children, href} = props;
   const classes = classNames(sc('button'), {
     [sc(`theme-${theme}`)]: theme,
     [sc(`size-${size}`)]: size,
+    [sc(`level-${level}`)]: level,
     'disabled': (theme === 'link') && disabled
   });
   if (theme === 'link' && href) {
@@ -33,7 +34,7 @@ const Button: React.FC<BaseButtonProps> = (props) => {
         href={href}
         className={classes}
       >
-        {children}
+        <span>{children}</span>
       </a>
     );
   } else {
@@ -42,7 +43,7 @@ const Button: React.FC<BaseButtonProps> = (props) => {
         className={classes}
         disabled={disabled}
       >
-        {children}
+        <span>{children}</span>
       </button>
     );
   }
