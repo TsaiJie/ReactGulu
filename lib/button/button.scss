@@ -87,6 +87,9 @@ $grey: gray;
       background: $blue;
       color: white;
       border-color: $blue;
+      > .gulu-loadingIndicator {
+        border-color: white white  white  transparent;
+      }
       &:hover,
       &:focus {
         background: darken($blue, 10%);
@@ -97,6 +100,9 @@ $grey: gray;
       background: $red;
       border-color: $red;
       color: white;
+      > .gulu-loadingIndicator {
+        border-color: white white  white  transparent;
+      }
       &:hover,
       &:focus {
         background: darken($red, 10%);
@@ -104,6 +110,9 @@ $grey: gray;
       }
     }
     &.gulu-level-waring {
+      > .gulu-loadingIndicator {
+        border-color: white white  white  transparent;
+      }
       background: $waring;
       border-color: $waring;
       color: white;
@@ -114,6 +123,9 @@ $grey: gray;
       }
     }
     &.gulu-level-success {
+      > .gulu-loadingIndicator {
+        border-color: white white  white  transparent;
+      }
       background: $success;
       border-color: $success;
       color: white;
@@ -199,4 +211,20 @@ $grey: gray;
       pointer-events: none;
     }
   }
+  > .gulu-loadingIndicator{
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 8px;
+    border-color: $color $color  $color  transparent;
+    border-style: solid;
+    border-width: 2px;
+    animation: gulu-spin 1s infinite linear;
+  }
+}
+
+@keyframes gulu-spin {
+  0%{transform: rotate(0deg)}
+  100%{transform: rotate(360deg)}
 }

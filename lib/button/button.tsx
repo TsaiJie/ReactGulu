@@ -15,13 +15,14 @@ interface BaseButtonProps {
   href?: string;
   theme?: Theme;
   level?: ButtonType;
+  loading?: boolean;
   
 }
 
 const scopedClass = scopedClassMaker('gulu');
 const sc = scopedClass;
 const Button: React.FC<BaseButtonProps> = (props) => {
-  const {theme,level, disabled, size, children, href} = props;
+  const {theme,level, disabled, size, children, href, loading} = props;
   const classes = classNames(sc('button'), {
     [sc(`theme-${theme}`)]: theme,
     [sc(`size-${size}`)]: size,
@@ -35,6 +36,7 @@ const Button: React.FC<BaseButtonProps> = (props) => {
         className={classes}
       >
         <span>{children}</span>
+       
       </a>
     );
   } else {
@@ -43,13 +45,16 @@ const Button: React.FC<BaseButtonProps> = (props) => {
         className={classes}
         disabled={disabled}
       >
+        {loading && <span className="gulu-loadingIndicator"/>}
         <span>{children}</span>
+        
       </button>
     );
   }
 };
 Button.defaultProps = {
   disabled: false,
-  theme: 'button'
+  theme: 'button',
+  loading: false
 };
 export default Button;

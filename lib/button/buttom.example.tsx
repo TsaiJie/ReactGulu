@@ -39,6 +39,12 @@ const ButtonExample: React.FunctionComponent = () => {
     </div>
     <Button disabled={true}>main</Button>
     <Button disabled={true} theme="link" href="https://www.baidu.com">danger</Button>
+    <Button loading={true}>loading</Button>
+    <Button loading={true} level={'main'}>main</Button>
+    <Button loading={true} level={'danger'}>danger</Button>
+    <Button loading={true} level={'waring'}>waring</Button>
+    <Button loading={true} level={'success'}>success</Button>
+
   </Fragment>);
 };
 export default ButtonExample;
