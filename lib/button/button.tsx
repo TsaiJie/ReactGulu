@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import {scopedClassMaker} from '../classes';
 import './button.scss';
 
-type ButtonSize = 'large' | 'small';
+type ButtonSize = 'big' | 'small';
 // type ButtonType = 'primary' | 'default' | 'danger';
 type Theme = 'button' | 'link' | 'text';
 
@@ -24,7 +24,7 @@ const Button: React.FC<BaseButtonProps> = (props) => {
   const {theme, disabled, size, children, href} = props;
   const classes = classNames(sc('button'), {
     [sc(`theme-${theme}`)]: theme,
-    [`btn-${size}`]: size,
+    [sc(`size-${size}`)]: size,
     'disabled': (theme === 'link') && disabled
   });
   if (theme === 'link' && href) {

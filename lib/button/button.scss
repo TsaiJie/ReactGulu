@@ -6,11 +6,9 @@ $radius: 4px;
 .gulu-button {
   box-sizing: border-box;
   height: $h;
-  line-height: $h;
-  font-size: 14px;
-  text-decoration: none;
+  font-size: 16px;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   background: white;
@@ -19,6 +17,7 @@ $radius: 4px;
   border-radius: $radius;
   white-space: nowrap;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
+  padding: 0 8px;
   &:hover,
   &:focus {
     color: $blue;
@@ -28,11 +27,25 @@ $radius: 4px;
     outline: none;
   }
   &.gulu-theme-link {
+    line-height: 32px;
+    display: inline-block;
     border-color: transparent;
     box-shadow: none;
     color: $blue;
+    text-decoration: none;
     &:hover, &:focus {
       color: lighten($blue, 10%);
+    }
+    &.gulu-size-big{
+      font-size: 24px;
+      height: 48px;
+      padding: 0 16px;
+      line-height: 48px;
+    }
+    &.gulu-size-small{
+      font-size: 14px;
+      height: 20px;
+      padding: 0 4px;
     }
   }
   &.gulu-theme-text {
@@ -41,6 +54,28 @@ $radius: 4px;
     color: inherit;
     &:hover, &:focus {
       background: darken(white, 5%);;
+    }
+    &.gulu-size-big{
+      font-size: 24px;
+      height: 48px;
+      padding: 0 16px
+    }
+    &.gulu-size-small{
+      font-size: 14px;
+      height: 20px;
+      padding: 0 4px;
+    }
+  }
+  &.gulu-theme-button{
+    &.gulu-size-big{
+      font-size: 24px;
+      height: 48px;
+      padding: 0 16px
+    }
+    &.gulu-size-small{
+      font-size: 14px;
+      height: 20px;
+      padding: 0 4px;
     }
   }
 }
