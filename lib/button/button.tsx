@@ -1,7 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
-import {scopedClassMaker} from '../classes';
+
 import './button.scss';
+import {scopedClassMaker} from '../helper/classes';
 
 type ButtonSize = 'big' | 'small';
 type ButtonType = 'main' | 'default' | 'danger' | 'waring' | 'success';

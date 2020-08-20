@@ -1,7 +1,7 @@
 import React, {ReactElement} from 'react';
-import {scopedClassMaker} from '../classes';
 import './layout.scss';
 import Aside from './aside';
+import {scopedClassMaker} from '../helper/classes';
 
 const sc = scopedClassMaker('gulu-layout');
 
@@ -19,12 +19,12 @@ const Layout: React.FunctionComponent<Props> = (props) => {
   //   }
   // });
   const childrenAsArray = children as ReactElement[];
-  const hashAside = childrenAsArray.length &&
+  const hashAside = 'length' in childrenAsArray &&
     childrenAsArray.reduce((result, node) => {
       return result || node.type === Aside;
     }, false);
   return (
-    <div className={sc('', {extra: [className, hashAside && 'hasAside'].join(' ')})} {...rest}>
+    <div className={sc({'': true, hashAside}, {extra: className})} {...rest}>
       {children}
     </div>);
 };
