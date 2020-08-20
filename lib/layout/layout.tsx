@@ -5,22 +5,27 @@ import Aside from './aside';
 
 const sc = scopedClassMaker('gulu-layout');
 
-interface Props extends React.HTMLAttributes<HTMLElement>{
+interface Props extends React.HTMLAttributes<HTMLElement> {
   children: ReactElement | ReactElement[];
 }
 
 const Layout: React.FunctionComponent<Props> = (props) => {
   const {className, children, ...rest} = props;
-  let hashAside = false;
-  // 判断子元素中 是否有Aside
-  React.Children.map(children, node=>{
-    if('type' in node && node.type === Aside){
-      hashAside = true;
-    }
-  });
+  // let hashAside = false;
+  // // 判断子元素中 是否有Aside
+  // React.Children.map(children, node=>{
+  //   if('type' in node && node.type === Aside){
+  //     hashAside = true;
+  //   }
+  // });
+  const childrenAsArray = children as ReactElement[];
+  const hashAside = childrenAsArray.length &&
+    childrenAsArray.reduce((result, node) => {
+      return result || node.type === Aside;
+    }, false);
   return (
-      <div className={sc('', {extra: [className, hashAside && 'hasAside'].join(' ')})} {...rest}>
-        {children}
-      </div>);
+    <div className={sc('', {extra: [className, hashAside && 'hasAside'].join(' ')})} {...rest}>
+      {children}
+    </div>);
 };
 export default Layout;
