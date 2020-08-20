@@ -1,22 +1,20 @@
 @import "../helper";
 
 .gulu-layout {
-  border: 1px solid coral;
   display: flex;
   flex-direction: column;
   &-content {
     flex-grow: 1;
-    border: 1px solid green;
+
   }
   // 如果layout里面还有layout 那么里面的layout占满全部
   & & {
     flex-grow: 1;
-    border: 1px solid blue;
     display: flex;
     flex-direction: row;
   }
   // 如果layout里面还有aside 那么要进行特殊处理
-  &.hasAside {
+  &-hasAside {
     flex-direction: row;
     .gulu-layout {
       flex-direction: column;

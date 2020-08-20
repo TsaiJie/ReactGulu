@@ -19,12 +19,12 @@ const Layout: React.FunctionComponent<Props> = (props) => {
   //   }
   // });
   const childrenAsArray = children as ReactElement[];
-  const hashAside = 'length' in childrenAsArray &&
+  const hasAside = 'length' in childrenAsArray &&
     childrenAsArray.reduce((result, node) => {
       return result || node.type === Aside;
     }, false);
   return (
-    <div className={sc({'': true, hashAside}, {extra: className})} {...rest}>
+    <div className={sc({'': true, hasAside}, {extra: className})} {...rest}>
       {children}
     </div>);
 };
