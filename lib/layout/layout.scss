@@ -8,4 +8,11 @@
     flex-grow: 1;
     border: 1px solid green;
   }
+  // 如果layout里面还有layout 那么里面的layout占满全部
+  & & {
+    flex-grow: 1;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: row;
+  }
 }
