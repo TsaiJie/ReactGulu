@@ -8,11 +8,11 @@ interface Props extends React.HTMLAttributes<HTMLElement>{
 }
 
 const Layout: React.FunctionComponent<Props> = (props) => {
-  const {className, ...rest} = props;
+  const {className, children, ...rest} = props;
   
   return (
       <div className={sc('', {extra: className})} {...rest}>
-        {props.children}
+        {children}
       </div>);
 };
 export default Layout;

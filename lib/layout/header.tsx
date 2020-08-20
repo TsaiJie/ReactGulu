@@ -3,10 +3,10 @@ import {scopedClassMaker} from '../classes';
 interface Props extends React.HTMLAttributes<HTMLElement> {}
 const sc = scopedClassMaker('gulu-layout');
 const Header: React.FunctionComponent<Props> = (props) => {
-  const {className, ...rest} = props;
+  const {className, children, ...rest} = props;
   return (
     <>
-      <div className={sc('header', {extra: className})} {...rest}>header</div>
+      <div className={sc('header', {extra: className})} {...rest}>{children}</div>
     </>);
 };
 export default Header;

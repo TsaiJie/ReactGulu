@@ -5,10 +5,10 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
 }
 const sc = scopedClassMaker('gulu-layout');
 const Content: React.FunctionComponent<Props> = (props) => {
-  const {className, ...rest} = props;
+  const {className,children, ...rest} = props;
   return (
     <>
-      <div className={sc('content', {extra: className})} {...rest}>content</div>
+      <div className={sc('content', {extra: className})} {...rest}>{children}</div>
     </>);
 };
 export default Content;
