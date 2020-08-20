@@ -26,7 +26,7 @@ describe('classes', () => {
 describe("测试scopedClassMarker", () => {
     it('接受字符串或者对象', () => {
       const sc = scopedClassMaker('gulu-layout')
-      expect(sc()).toEqual('gulu-layout')
+      expect(sc('')).toEqual('gulu-layout')
       expect(sc('x')).toEqual('gulu-layout-x')
       expect(sc({y: true, z: false})).toEqual('gulu-layout-y')
       expect(sc({y: true, z: true})).toEqual('gulu-layout-y gulu-layout-z')
