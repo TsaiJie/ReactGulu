@@ -1,9 +1,12 @@
 import React from 'react';
-
-const Aside: React.FunctionComponent = (props) => {
+import {scopedClassMaker} from '../classes';
+interface Props extends React.HTMLAttributes<HTMLElement>{}
+const sc = scopedClassMaker('gulu-layout');
+const Aside: React.FunctionComponent<Props> = (props) => {
+  const {className, ...rest} = props;
   return (
     <>
-      <div>aside</div>
+      <div className={sc('aside',{extra:className})} {...rest}>aside</div>
     </>);
 };
 export default Aside;

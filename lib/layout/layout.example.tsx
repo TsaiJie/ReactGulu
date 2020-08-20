@@ -9,7 +9,7 @@ const LayoutExample: React.FunctionComponent = (props) => {
     <>
       <div>
         <h1>第一个例子</h1>
-        <Layout style={{height: 500}} className={'1'}>
+        <Layout style={{height: '500px'}} className={'1'} >
           <Header>header</Header>
           <Content>content</Content>
           <Footer>footer</Footer>
