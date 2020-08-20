@@ -47,7 +47,6 @@ const LayoutExample: React.FunctionComponent = (props) => {
             <Content>content</Content>
             <Footer>footer</Footer>
           </Layout>
-          
         </Layout>
       </div>
     </>);

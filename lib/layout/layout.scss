@@ -15,4 +15,11 @@
     display: flex;
     flex-direction: row;
   }
+  // 如果layout里面还有aside 那么要进行特殊处理
+  &.hasAside {
+    flex-direction: row;
+    .gulu-layout {
+      flex-direction: column;
+    }
+  }
 }
